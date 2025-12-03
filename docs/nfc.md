@@ -1,0 +1,3 @@
+- https://developers.weixin.qq.com/miniprogram/dev/api/device/nfc/wx.removeSecureElementPass.html
+- https://developers.weixin.qq.com/miniprogram/dev/api/device/nfc-hce/wx.startHCE.html
+- https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/NFC.html
