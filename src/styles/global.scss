@@ -1,0 +1,55 @@
+@use "./vars.scss" as *;
+
+page {
+    background-color: $bg-page;
+    color: $text-primary;
+    font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: 28rpx; // Using rpx for responsive font size in mini programs
+    line-height: 1.5;
+}
+
+view,
+text,
+image,
+scroll-view,
+button,
+input,
+textarea {
+    box-sizing: border-box;
+}
+
+// Reset button styles
+button {
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    line-height: inherit;
+    border-radius: 0;
+
+    &::after {
+        border: none;
+    }
+}
+
+// Common utility classes
+.container {
+    padding: 32rpx;
+}
+
+.card {
+    background-color: $bg-card;
+    border-radius: 16rpx;
+    padding: 24rpx;
+    box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
+}
+
+// Text utilities
+.text-primary {
+    color: $primary;
+}
+
+.text-tertiary {
+    color: $tertiary;
+}

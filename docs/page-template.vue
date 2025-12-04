@@ -1,7 +1,7 @@
 <template>
     <!-- you should handle top safeAreaInset if customizeNavigationBar is enabled -->
     <!-- you should handle TabBar safeAreaInset if customize TabBar is enabled and this page is a tabBar page -->
-    <!-- you should handle bottom safeAreaInset as always -->
+    <!-- you always should handle bottom safeAreaInset -->
 </template>
 
 <script setup lang="ts">

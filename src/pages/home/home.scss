@@ -1,0 +1,442 @@
+@use "../../styles/vars" as *;
+@use "../../styles/mixins" as *;
+
+// ===========================
+// Page Base
+// ===========================
+.page {
+    min-height: 100vh;
+    background-color: $white;
+    @include safe-area-bottom;
+}
+
+// ===========================
+// Hero Section
+// ===========================
+.hero {
+    padding: 0 32px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid $gray-200;
+
+    &__status-bar {
+        height: var(--status-bar-height);
+    }
+
+    &__capsule-spacer {
+        // Reserve space for WeChat capsule button (about 32px height + some margin)
+        height: 48px;
+    }
+
+    &__content {
+        @include flex-column;
+        align-items: center;
+        text-align: center;
+    }
+
+    &__intro {
+        @include flex-column;
+        align-items: center;
+        margin-bottom: 32px;
+    }
+
+    &__greeting {
+        font-size: 12px;
+        color: $gray-500;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+    }
+
+    &__name {
+        font-size: 40px;
+        font-weight: 800;
+        color: $gray-900;
+        letter-spacing: -1px;
+        line-height: 1.1;
+    }
+
+    &__avatar {
+        width: 100px;
+        height: 100px;
+        border: 2px solid $gray-900;
+        margin-bottom: 24px;
+        transition:
+            transform 0.2s ease,
+            border-color 0.2s ease;
+
+        &.is-pressed {
+            transform: scale(0.95);
+            border-color: $primary;
+        }
+    }
+
+    &__title-group {
+        @include flex-column;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 32px;
+    }
+
+    &__title-item {
+        @include flex-center;
+        gap: 12px;
+        cursor: pointer;
+        transition: opacity 0.3s ease;
+        opacity: 0.35;
+
+        &.is-active {
+            opacity: 1;
+
+            .hero__title-marker {
+                width: 24px;
+                background-color: $primary;
+            }
+        }
+    }
+
+    &__title-marker {
+        width: 8px;
+        height: 2px;
+        background-color: $gray-400;
+        transition: all 0.3s ease;
+    }
+
+    &__title-text {
+        font-size: 14px;
+        color: $gray-700;
+        font-weight: 500;
+        letter-spacing: 1px;
+    }
+
+    &__divider {
+        @include flex-center;
+        gap: 16px;
+        margin-top: 32px;
+    }
+
+    &__divider-line {
+        flex: 1;
+        height: 1px;
+        background-color: $gray-200;
+    }
+
+    &__divider-dot {
+        width: 5px;
+        height: 5px;
+        background-color: $gray-900;
+        transform: rotate(45deg);
+    }
+}
+
+// ===========================
+// Section Base
+// ===========================
+.section {
+    padding: 40px 32px;
+    border-bottom: 1px solid $gray-200;
+
+    &__header {
+        @include flex-center;
+        justify-content: flex-start;
+        gap: 16px;
+        margin-bottom: 32px;
+    }
+
+    &__number {
+        font-size: 12px;
+        font-weight: 700;
+        color: $primary;
+        font-family: "Courier New", monospace;
+    }
+
+    &__label {
+        font-size: 20px;
+        font-weight: 700;
+        color: $gray-900;
+        letter-spacing: 2px;
+    }
+
+    &__body {
+        // placeholder for content
+    }
+}
+
+// ===========================
+// About Section
+// ===========================
+.about {
+    &__text {
+        display: block;
+        font-size: 15px;
+        color: $gray-600;
+        line-height: 1.8;
+        margin-bottom: 32px;
+    }
+
+    &__quote {
+        position: relative;
+        padding-left: 24px;
+        border-left: 2px solid $gray-900;
+    }
+
+    &__quote-mark {
+        position: absolute;
+        top: -8px;
+        left: 24px;
+        font-size: 48px;
+        color: $gray-200;
+        font-family: Georgia, serif;
+        line-height: 1;
+    }
+
+    &__quote-text {
+        font-size: 18px;
+        font-weight: 600;
+        color: $gray-800;
+        font-style: italic;
+        letter-spacing: 1px;
+    }
+}
+
+// ===========================
+// Tech Stack Section
+// ===========================
+.tech-list {
+    @include flex-column;
+}
+
+.tech-item {
+    border-bottom: 1px solid $gray-100;
+    overflow: hidden;
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    &__header {
+        @include flex-between;
+        padding: 20px 0;
+        cursor: pointer;
+    }
+
+    &__category {
+        font-size: 15px;
+        font-weight: 600;
+        color: $gray-800;
+        letter-spacing: 0.5px;
+    }
+
+    &__toggle {
+        position: relative;
+        width: 16px;
+        height: 16px;
+    }
+
+    &__toggle-h,
+    &__toggle-v {
+        position: absolute;
+        background-color: $gray-400;
+        transition: all 0.3s ease;
+    }
+
+    &__toggle-h {
+        width: 16px;
+        height: 2px;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+    }
+
+    &__toggle-v {
+        width: 2px;
+        height: 16px;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+    }
+
+    &__content {
+        max-height: 0;
+        overflow: hidden;
+        transition:
+            max-height 0.3s ease,
+            padding 0.3s ease;
+    }
+
+    &__skills {
+        display: block;
+        font-size: 14px;
+        color: $gray-500;
+        line-height: 1.6;
+        letter-spacing: 0.5px;
+    }
+
+    // Expanded State
+    &.is-expanded {
+        .tech-item__toggle-h {
+            background-color: $primary;
+        }
+
+        .tech-item__toggle-v {
+            transform: translateX(-50%) rotate(90deg);
+            opacity: 0;
+        }
+
+        .tech-item__content {
+            max-height: 100px;
+            padding-bottom: 20px;
+        }
+
+        .tech-item__category {
+            color: $primary;
+        }
+    }
+}
+
+// ===========================
+// Projects Section
+// ===========================
+.project-grid {
+    @include flex-column;
+    gap: 16px;
+}
+
+.project-card {
+    position: relative;
+    padding: 24px;
+    border: 1px solid $gray-200;
+    background-color: $white;
+    transition: all 0.2s ease;
+
+    &.is-pressed {
+        background-color: $gray-900;
+
+        .project-card__index,
+        .project-card__name,
+        .project-card__desc {
+            color: $white;
+        }
+
+        .project-card__arrow {
+            right: 16px;
+            color: $white;
+        }
+    }
+
+    &__index {
+        font-size: 11px;
+        font-weight: 700;
+        color: $gray-400;
+        font-family: "Courier New", monospace;
+        margin-bottom: 8px;
+        display: block;
+    }
+
+    &__name {
+        font-size: 18px;
+        font-weight: 700;
+        color: $gray-900;
+        display: block;
+        margin-bottom: 4px;
+    }
+
+    &__desc {
+        font-size: 13px;
+        color: $gray-500;
+        display: block;
+    }
+
+    &__arrow {
+        position: absolute;
+        right: 24px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 20px;
+        color: $gray-300;
+        transition:
+            right 0.2s ease,
+            color 0.2s ease;
+    }
+}
+
+// ===========================
+// Contact Section
+// ===========================
+.contact {
+    &__text {
+        display: block;
+        font-size: 15px;
+        color: $gray-600;
+        line-height: 1.6;
+        margin-bottom: 32px;
+    }
+
+    &__btn {
+        position: relative;
+        width: 100%;
+        padding: 20px 0;
+        background-color: $gray-900;
+        color: $white;
+        overflow: hidden;
+        transition: background-color 0.2s ease;
+
+        &.is-pressed {
+            background-color: $primary;
+
+            .contact__btn-line {
+                transform: scaleX(1);
+            }
+        }
+    }
+
+    &__btn-text {
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        position: relative;
+        z-index: 1;
+    }
+
+    &__btn-line {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: $white;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+    }
+}
+
+// ===========================
+// Footer
+// ===========================
+.footer {
+    @include flex-column;
+    align-items: center;
+    padding: 40px 32px;
+    gap: 16px;
+
+    &__line {
+        width: 32px;
+        height: 1px;
+        background-color: $gray-300;
+    }
+
+    &__text {
+        font-size: 11px;
+        color: $gray-400;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+    }
+
+    &__year {
+        font-size: 12px;
+        color: $gray-300;
+        font-weight: 700;
+        font-family: "Courier New", monospace;
+    }
+}

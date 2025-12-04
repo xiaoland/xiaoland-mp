@@ -6,7 +6,9 @@ This is a Uniapp project.（Uniapp is a multi-end application framework based on
 - State management: Pinia
 - Internalization: vue-i18n
 - Style management: UnoCSS + sass
-  - UnoCSS + iconify to use iconfont
+  - use UnoCSS + iconify to use iconfont
+  - keep styles code in sass files
+- Package management: pnpm
 
 ## Source Structure
 
@@ -24,7 +26,7 @@ This is a Uniapp project.（Uniapp is a multi-end application framework based on
 
 Register pages, customize globalStyle, tabBar and subPackages here.
 
-- Set `style.navigationStyle` to `custom` to enable custom navigation bar.
+- Set `style.navigationStyle` to `custom` to enable custom navigation bar (and then you will need to handle top safe area inset in page).
 - Config `tabBar` to enable level 1 navigation bar. (read <https://uniapp.dcloud.net.cn/collocation/pages.html#tabbar> for details)
 
 ## Compatibility
@@ -34,16 +36,18 @@ Since this project will be compiled to WeChat Mini Program, some APIs, HTML Elem
 ### TypeScript
 
 - support ECMAScript, but browser API like window, document, navigator and etc. is not supported.
-- Uniapp provides its API through a global object `uni`, read <https://uniapp.dcloud.net.cn/api/> for API reference.
-  - use `uni.request` instead of `fetch` and Fetch API Family is also unavailable.
-  - WeChat Mini Program platform specific APIs are provided from a global object `wx`, read <https://developers.weixin.qq.com/miniprogram/dev/api/> for API reference.
+- Uniapp provides its API through a global object `uni`, read [this](docs/uniapp-api.md) for API reference.
+- WeChat Mini Program platform specific APIs are provided from a global object `wx`, read <https://developers.weixin.qq.com/miniprogram/dev/api/> for API reference.
 
 ### Styles(CSS/SCSS)
 
-- only class selector is supported
+- can only use class selectors
 - use `page` to replace `:root`
 - `:root` can only be used in `App.vue`
 - `<textarea>`, `<input>`, `<scroll-view>` style must be modified by using `::after` or `::pseudo:after`.
+- `@import` is deprecated, use `@use` and `@forward` instead.
+- You can use `env(safe-area-inset-bottom)` and `var(--status-bar-height)` to get safe area inset values.
+- Use px instead of rpx.
 
 ### Template(HTML)
 
@@ -75,7 +79,3 @@ Run `pnpm run build:mp-weixin` and make sure no error occurs.
 
 - [Write human-readable code](docs/write-human-readable-code.md)
 - Setup and use design system (ref, sys tokens of color, typography, spacing, elevation).
-
-## References
-
-- <https://github.com/partner-up-dev/client-uniapp> is a reference implementation of uniapp project. (Uses UnoCSS + iconify, three-layerd design tokens, i18n)
